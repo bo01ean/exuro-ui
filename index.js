@@ -34,8 +34,7 @@ io.on('connection', function(socket) {
     var localCommand = _.extend([], command);
     var file = recordDirectory + stamp + '.wav';
     localCommand.push(file);
-    console.log(command, localCommand, recordDirectory);
-    var commandStr = command.join(' ');
+    var commandStr = localCommand.join(' ');
     console.log(commandStr);
     socket.emit('recording-start');
     exec(commandStr).then(function (data) {

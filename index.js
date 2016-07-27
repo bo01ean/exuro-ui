@@ -40,6 +40,8 @@ io.on('connection', function(socket) {
     exec(commandStr).then(function (data) {
       console.log('recording done.');
       socket.emit('recording-done');
+      console.log('encoding start.');
+      socket.emit('encoding-start');
       var encodeCommand = _.extend([], lameCommand);
       encodeCommand.push(file);
       var encodeCommandString = encodeCommand.join(' ');

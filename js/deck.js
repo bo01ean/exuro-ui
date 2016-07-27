@@ -5,7 +5,7 @@
   var i, image, j, matches, rules, sheet;
 
   // Horizontal business as usual
-  bespoke.horizontal.from('article', {
+  var deck = bespoke.horizontal.from('article', {
     state: true,
     hash: true,
     bullets: true

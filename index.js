@@ -3,7 +3,7 @@ var exec = require('child-process-promise').exec;
 var http = require('http');
 var _ = require('underscore');
 var moment = require('moment');
-var recordDirectory = './media/pi/EXURO/';
+var recordDirectory = '/media/pi/EXURO/';
 var command = ['arecord', '-D', 'plughw:1',  '-f', 'S16_LE', '-c2', '-r', '48000', '--duration=10', '-vv'];
 var lameCommand = ['lame', '--preset', 'insane'];
 

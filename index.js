@@ -5,6 +5,7 @@ var _ = require('underscore');
 var moment = require('moment');
 var recordDirectory = './';
 var command = ['arecord', '-D', 'plughw:1',  '-f', 'S16_LE', '-c2',  '--duration=10', '-vv'];
+var lameCommand = ['lame', '--preset', 'insane'];
 
 
 // Send index.html to all requests
@@ -28,18 +29,30 @@ setInterval(sendTime, 10000);
 io.on('connection', function(socket) {
   console.log('someone connected.');
   // Use socket to communicate with this particular client only, sending it it's own id
-  socket.emit('welcome', { message: 'Welcome!', id: socket.id });
-  socket.on('i am client', console.log);
   socket.on('record', function () {
     var stamp = moment().format('YYYY-MM-DD-HH');
     var localCommand = _.extend([], command);
-    localCommand.push(recordDirectory + stamp + '.wav');
+    var file = recordDirectory + stamp + '.wav';
+    localCommand.push(file);
     console.log(command, localCommand, recordDirectory);
     var commandStr = command.join(' ');
     console.log(commandStr);
+    socket.emit('recording-start');
     exec(commandStr).then(function (data) {
       console.log('recording done.');
       socket.emit('recording-done');
+      var encodeCommand = _.extend([], lameCommand);
+      encodeCommand.push(file);
+      var encodeCommandString = encodeCommand.join(' ');
+      exec(encodeCommandString).then(function() {
+        socket.emit('encoding-done');
+        console.log('encoding done');
+      }).catch(function(){
+        socket.emit('encoding-fail');
+        console.log('encoding fail');
+      });
+    }).catch(function (err) {
+      socket.emit('recording-failure', err);
     });
   });
 });

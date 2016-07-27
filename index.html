@@ -10,19 +10,34 @@
 
             var socket = io('http://localhost:3333');
             socket.on('connect', function(){});
-            socket.on('event', function(data){});
+            socket.on('recording-start', function (){ });
+            socket.on('recording-done', function (){ });
             socket.on('time', function(data){console.log(data)});
             socket.on('disconnect', function(){});
             window.record = function () {
-                console.log('RECORD');
+               console.log('RECORD');
                socket.emit('record');
             }
-
         </script>
     </head>
     <body>
     <article>
-      <section data-bespoke-state="start">
+        <section data-bespoke-state="start">
+            <div class="content">
+                <div class="byline">
+                    <!--div class="classy">
+                        this talk is about
+                    </div-->
+                </div>
+                <h3>Welcome to Cabina Exuro!</h3>
+                <div class="byline">
+                    <div class="classy">
+                        Consent WARNING HERE
+                    </div>
+                </div>
+            </div>
+        </section>
+      <section>
         <div class="content">
           <div class="unbrokenline"></div>
           <h1>Consuming REST APIs with Restangular</h1>
@@ -72,21 +87,7 @@
         <div class="content"></div>
       </section>
 
-      <section>
-        <div class="content">
-          <div class="byline">
-            <div class="classy">
-              this talk is about
-            </div>
-          </div>
-          <h3>Learning Restangular</h3>
-          <div class="byline">
-            <div class="classy">
-              and how to consume REST APIs with it
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       <section>
         <div class="content">

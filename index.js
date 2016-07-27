@@ -30,7 +30,7 @@ io.on('connection', function(socket) {
   console.log('someone connected.');
   // Use socket to communicate with this particular client only, sending it it's own id
   socket.on('record', function () {
-    var stamp = moment().format('YYYY-MM-DD-HH-MM');
+    var stamp = moment().format('YYYY-MM-DD-HH-MM-SS');
     var localCommand = _.extend([], command);
     var file = recordDirectory + stamp + '.wav';
     localCommand.push(file);

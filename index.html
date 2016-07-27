@@ -20,7 +20,10 @@
                 <div class="byline">
                     <div class="classy">
                         Consent WARNING HERE
+                        <br />
                         <button onclick="window.record();">RECORD</button>
+                        <button onclick="app.deck.next();">NEXT >></button>
+                        <button onclick="app.deck.prev();"><< PREVIOUS</button>
                     </div>
                 </div>
             </div>
@@ -659,7 +662,6 @@ BondRestangular.one('place', 12).get();</code></pre>
       })();
     </script>
     <script src="js/bespoke.js"></script>
-    <script src="js/deck.js"></script>
     <script src="js/prism.js"></script>
     <script src="js/jquery.js"></script>
     <script src="js/angular.min.js"></script>
@@ -667,16 +669,45 @@ BondRestangular.one('place', 12).get();</code></pre>
     <script src="js/app.basic.js"></script>
     <script src="node_modules/socket.io-client/socket.io.js"></script>
     <script>
-        var socket = io('http://localhost:3333');
-        socket.on('connect', function(){});
-        socket.on('recording-start', function (){ });
-        socket.on('recording-done', function (){ });
-        socket.on('time', function(data){console.log(data)});
-        socket.on('disconnect', function(){});
-        window.record = function () {
-            console.log('RECORD');
-            socket.emit('record');
-        };
+            'use strict';
+            var app = {};
+            var i, image, j, matches, rules, sheet;
+
+
+            // Horizontal business as usual
+            app.deck = bespoke.horizontal.from('article', {
+                state: true,
+                hash: true,
+                bullets: true
+            });
+
+            if (document.styleSheets) {
+                for (i = 0; i < document.styleSheets.length; ++i) {
+                    sheet = document.styleSheets[i];
+                    if (sheet.rules) {
+                        for (j = 0; j < sheet.rules.length; ++j) {
+                            rules = sheet.rules[j];
+                            if (rules.style && rules.style.backgroundImage) {
+                                matches = rules.style.backgroundImage.match(/url\((.*)\)/);
+                                if (matches) {
+                                    image = new Image();
+                                    image.src = matches[1];
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            var socket = io('http://localhost:3333');
+            socket.on('connect', function(){});
+            socket.on('recording-start', function (){ });
+            socket.on('recording-done', function (){ });
+            socket.on('time', function(data){console.log(data)});
+            socket.on('disconnect', function(){});
+            app.record = function () {
+                console.log('RECORD');
+                socket.emit('record');
+            };
         //var a = [0,1,2];
         //var rand = a[Math.random(0, a.length)];
     </script>

@@ -46,6 +46,13 @@ io.on('connection', function(socket) {
       exec(encodeCommandString).then(function() {
         socket.emit('encoding-done');
         console.log('encoding done');
+        exec('rm ' + file).then(function () {
+          console.log('delete done');
+          socket.emit('delete-done');
+        }).catch(function (){
+          console.log('delete fail');
+          socket.emit('delete-fail');
+        });
       }).catch(function(){
         socket.emit('encoding-fail');
         console.log('encoding fail');

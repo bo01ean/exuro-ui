@@ -4,7 +4,7 @@ var http = require('http');
 var _ = require('underscore');
 var moment = require('moment');
 var recordDirectory = './';
-var command = ['arecord', '-D', 'plughw:1',  '-f', 'S16_LE', '-c2',  '--duration=10', '-vv'];
+var command = ['arecord', '-D', 'plughw:1',  '-f', 'S16_LE', '-c2', '-r', '48000', '--duration=10', '-vv'];
 var lameCommand = ['lame', '--preset', 'insane'];
 
 
@@ -30,7 +30,7 @@ io.on('connection', function(socket) {
   console.log('someone connected.');
   // Use socket to communicate with this particular client only, sending it it's own id
   socket.on('record', function () {
-    var stamp = moment().format('YYYY-MM-DD-HH');
+    var stamp = moment().format('YYYY-MM-DD-HH-MM');
     var localCommand = _.extend([], command);
     var file = recordDirectory + stamp + '.wav';
     localCommand.push(file);

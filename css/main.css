@@ -298,7 +298,7 @@ section .byline, section .row {
 
 section .byline {
   font-size: 1em;
-  color: #a6a6a6;
+  color: #000000;
 }
 
 section .byline::before, section .byline::after {

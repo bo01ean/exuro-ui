@@ -467,7 +467,7 @@ section .byline, section .row {
 
 section .byline {
     font-size: 1em;
-    color: #000000;
+    color: #ff0;
 }
 
 section .byline::before, section .byline::after {

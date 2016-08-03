@@ -52,24 +52,25 @@
             <br>
             <br>
             <button onclick="app.deck.next();">next</button>
-            <button onclick="window.record();">RECORD</button>
         </div>
       </section>
 
-      <section data-bespoke-state="steamclock">
+      <section>
         <div class="content">
           <div class="byline">
             <h1>Cabina Exuro</h1>
           </div>
-          On the next page you will get a few promts
+          On the next page you will get a few prompts.
+            <br> Take 30 seconds to think about one.
             <br>
             <br>
             <button onclick="app.deck.next();">next</button>
         </div>
       </section>
 
-      <section data-bespoke-state="programming">
-
+      <section>
+          <p id="demo"></p>
+          <button onclick="app.deck.next();">next</button>
       </section>
 
 
@@ -77,26 +78,20 @@
       <section>
         <div class="content">
           <h3>So Let's start</h3>
+
         </div>
       </section>
 
       <section>
         <div class="content">
-          <h2>Let's create a WebApp with AngularJS</h2>
+          <h2><button onclick="window.record();">RECORD</button></h2>
         </div>
       </section>
 
 
-      <section data-bespoke-state="livecode">
+      <section>
         <div class="content">
-          <div data-angular-app="helloWorld">
-            <span>Enter your name</span>
-            <input type="text" ng-model="person" value="" />
-            <p class="hello">Hello <span class="result">{{person}}</span></p>
-          </div>
-          <pre><code class="language-markup">&lt;input type=&quot;text&quot; ng-model=&quot;person&quot; value=&quot;&quot; /&gt;
-&lt;span&gt;Hello &#123;&#123;person&#125;&#125; &lt;/span&gt;</code></pre>
-
+            <div>Recording stops in <span id="time"></span> minutes!</div>
         </div>
       </section>
 
@@ -704,6 +699,73 @@ BondRestangular.one('place', 12).get();</code></pre>
             };
         //var a = [0,1,2];
         //var rand = a[Math.random(0, a.length)];
+    </script>
+    <script language="JavaScript">
+        var question= new Array(5)
+        question[0] = "How is the burn?"
+        question[1] = "Did you skydive in?"
+        question[2] = "Have you seen Daft Punk anywhere?"
+        question[3] = "What's your favortie street?"
+        question[4] = "Did you get ice?"
+        question[5] = "What is your namesake?"
+        question[6] = "Have you seen Carl Cox anywhere?"
+        question[7] = "What's your favortie Art Car?"
+        question[8] = "Hippy?!?"
+        question[9] = "Remember to snark."
+
+        var numberOfQuestions = 5;
+        var questions = [];
+
+        for(var i=0;i<numberOfQuestions;i++){
+            var rand_int= Math.floor(Math.random()*question.length);
+            while(question[rand_int] == null){
+                var rand_int= Math.floor(Math.random()*question.length);
+            }
+            questions.push(question[rand_int]);
+            question.splice(rand_int, 1);
+        }
+
+        //this print out is simple but will not dynamically adjust if you change 'numberOfQuestions'
+        //You would have to manually change the document.write() statement
+
+        document.getElementById("demo").innerHTML =  questions[0] + "<br />" + questions[1] + "<br />" + questions[2];
+    </script>
+    <script>
+        function startTimer(duration, display) {
+            var start = Date.now(),
+                    diff,
+                    minutes,
+                    seconds;
+            function timer() {
+                // get the number of seconds that have elapsed since
+                // startTimer() was called
+                diff = duration - (((Date.now() - start) / 1000) | 0);
+
+                // does the same job as parseInt truncates the float
+                minutes = (diff / 60) | 0;
+                seconds = (diff % 60) | 0;
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (diff <= 0) {
+                    // add one second so that the count down starts at the full duration
+                    // example 05:00 not 04:59
+                    start = Date.now() + 1000;
+                }
+            };
+            // we don't want to wait a full second before the timer starts
+            timer();
+            setInterval(timer, 1000);
+        }
+
+        window.onload = function () {
+            var fiveMinutes = 60 * 5,
+                    display = document.querySelector('#time');
+            startTimer(fiveMinutes, display);
+        };
     </script>
     </body>
 </html>

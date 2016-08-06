@@ -34,7 +34,6 @@
             <h5>Share Your Story</h5>
             <br>
             <br>
-            <br>
             <button onclick="app.deck.next();">START</button>
         </div>
       </section>
@@ -73,8 +72,6 @@
               <div class="byline">
                   <h4><p id="demo"></p></h4>
               </div>
-              <br>
-              <br>
               <button onclick="app.deck.next();">next</button>
           </div>
       </section>
@@ -101,50 +98,6 @@
             </div>
 
         </section>
-
-      <section>
-        <div class="content">
-          <div class="byline">
-            <div class="classy">
-              This is the end of the presentation, so
-            </div>
-          </div>
-          <h3>Thank you for listening</h3>
-          <div class="byline">
-            <div class="classy">
-              or at least pretending to
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div class="content">
-          <h1>Questions?</h1>
-        </div>
-      </section>
-
-      <section data-bespoke-state="the-end">
-        <div class="content"></div>
-      </section>
-
-      <section data-bespoke-state="final" class="intro">
-        <div class="content">
-          <div class="byline">
-            <div class="classy">
-              This has been
-            </div>
-          </div>
-          <h1>Consuming REST APIs with Restangular</h1>
-          <div class="byline">
-            <div class="classy">
-              by Martin Gontovnikas
-            </div>
-          </div>
-          <h3>@mgonto</h3>
-          <img src="img/yupi.gif">
-        </div>
-      </section>
 
     </article>
     <script type="text/javascript">
@@ -273,7 +226,8 @@
 
         window.countdown = function () {
             var fiveMinutes = 60 * 5,
-                    display = document.querySelector('#time');
+                    display = document.querySelector('#time')
+
             startTimer(fiveMinutes, display);
             setTimeout(function(){app.deck.next();},5000);
             setTimeout(function(){window.location.href='index.html'},10000);

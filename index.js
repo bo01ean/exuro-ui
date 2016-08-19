@@ -4,7 +4,7 @@ var http = require('http');
 var _ = require('underscore');
 var moment = require('moment');
 var recordDirectory = '/media/pi/EXURO/';
-var command = ['arecord', '-D', 'plughw:1',  '-f', 'S16_LE', '-c2', '-r', '48000', '--duration=360', '-vv'];
+var command = ['arecord', '-D', 'plughw:1',  '-f', 'S16_LE', '-c2', '-r', '48000', '--duration=300', '-vv'];
 var lameCommand = ['lame', '--preset', 'insane'];
 
 
@@ -27,10 +27,10 @@ setInterval(sendTime, 10000);
 
 // Emit welcome message on connection
 io.on('connection', function(socket) {
-  console.log('someone connected.');
+  console.log('some Burner connected.');
   // Use socket to communicate with this particular client only, sending it it's own id
   socket.on('record', function () {
-    var stamp = moment().format('YYYY-MM-DD-HH-MM-SS');
+    var stamp = moment().format('YYYY-MM-DD-HH-mm-SS');
     var localCommand = _.extend([], command);
     var file = recordDirectory + stamp + '.wav';
     localCommand.push(file);

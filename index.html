@@ -165,14 +165,14 @@
             socket.on('recording-done', function (){ });
             socket.on('time', function(data){console.log(data)});
             socket.on('disconnect', function(){});
-            app.record = function () {
+            window.record = function () {
                 console.log('RECORD');
                 socket.emit('record');
             };
 
     </script>
     <script language="JavaScript">
-        var question= new Array(3)
+        var question= new Array(3);
         question[0] = "When is the last time you pissed or shit your pants?"
         question[1] = "What is the most daring place you have had sex?"
         question[2] = "Tell us about the first time you truly understood euphoria?"

@@ -29,7 +29,7 @@
           <div class="byline">
             <h3>Cabina Exuro</h3>
           </div>
-            <h5>Share Your Story</h5>
+            Share Your Story
             <br>
             <br>
             <button onclick="app.deck.next();">START</button>
@@ -69,7 +69,7 @@
       <section>
           <div class="content">
               <div class="byline">
-                  <h4><p id="demo"></p></h4>
+                  <h4><p id="exuroQuestions"></p></h4>
               </div>
               <button onclick="app.deck.next();">next</button>
           </div>
@@ -81,7 +81,7 @@
                 <div class="byline">
                     Please begin by clearly stating your name (Playa and/or otherwise)
                     <br>Where you're from and what Burn this is for you.
-                    <br>State the prompt you choose.
+                    <br>State the prompt of you're choosing.
                     <br>Then share your story!
                 </div>
                 <h2><button onclick="window.record();" onmousedown="window.countdown();" onmouseup="app.deck.next();">RECORD</button></h2>
@@ -232,7 +232,7 @@
         //this print out is simple but will not dynamically adjust if you change 'numberOfQuestions'
         //You would have to manually change the document.write() statement
 
-        document.getElementById("demo").innerHTML = "1. " + questions[0] + "<br />" + "2. "  + questions[1] + "<br />" + "3. " + questions[2];
+        document.getElementById("exuroQuestions").innerHTML = "1. " + questions[0] + "<br />" + "2. "  + questions[1] + "<br />" + "3. " + questions[2];
     </script>
     <script>
         function startTimer(duration, display) {

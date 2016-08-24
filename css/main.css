@@ -408,6 +408,7 @@ body {
 section {
     color: #f2f2f2;
     text-align: center;
+
 }
 
 section .content {
@@ -417,24 +418,28 @@ section .content {
 
 h1, h2, h3 {
     text-transform: uppercase;
+    text-align: center;
 }
 
 section h1 {
     font-size: 3.5em;
     font-weight: 300;
     margin: 0;
+    text-align: center;
 }
 
 section h2 {
     font-size: 3em;
     font-weight: 300;
     margin: 0;
+    text-align: center;
 }
 
 section h3 {
     font-size: 2.5em;
     font-weight: 400;
     margin: 0;
+    text-align: center;
 }
 
 section h4 {
@@ -442,6 +447,7 @@ section h4 {
     font-size: 1.5em;
     line-height: 1.5;
     font-weight: 400;
+    text-align: left;
 }
 
 section .underline {
